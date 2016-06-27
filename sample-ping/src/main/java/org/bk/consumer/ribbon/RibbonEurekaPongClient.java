@@ -11,19 +11,19 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestOperations;
 import org.springframework.web.client.RestTemplate;
 
 @Service("ribbonPongClient")
 public class RibbonEurekaPongClient implements PongClient {
 
     @Autowired
-    @LoadBalanced
-    private RestTemplate restTemplate;
+    private RestOperations restTemplate;
 
     @Override
     public MessageAcknowledgement sendMessage(Message message) {
         HttpEntity<Message> requestEntity = new HttpEntity<>(message);
-        ResponseEntity<MessageAcknowledgement> response =  this.restTemplate.exchange("http://samplepong/message", HttpMethod.POST, requestEntity, MessageAcknowledgement.class, Maps.newHashMap());
+        ResponseEntity<MessageAcknowledgement> response =  this.restTemplate.exchange("http://sample-pong/message", HttpMethod.POST, requestEntity, MessageAcknowledgement.class, Maps.newHashMap());
         return response.getBody();
     }
 

@@ -10,6 +10,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestOperations;
 import org.springframework.web.client.RestTemplate;
 
 @Service("ribbonDirectPongClient")
@@ -17,7 +18,7 @@ public class RibbonDirectPongClient implements PongClient {
 
     @Autowired
     @LoadBalanced
-    private RestTemplate restTemplate;
+    private RestOperations restTemplate;
 
     @Override
     public MessageAcknowledgement sendMessage(Message message) {
