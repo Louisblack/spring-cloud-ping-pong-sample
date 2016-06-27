@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 public class HystrixWrappedPongClient implements PongClient {
 
     @Autowired
-//    @Qualifier("pongClient")
     private PongClient feignPongClient;
 
     @Override
