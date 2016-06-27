@@ -18,12 +18,13 @@ import org.springframework.web.client.RestTemplate;
 public class RibbonEurekaPongClient implements PongClient {
 
     @Autowired
+    @LoadBalanced
     private RestOperations restTemplate;
 
     @Override
     public MessageAcknowledgement sendMessage(Message message) {
         HttpEntity<Message> requestEntity = new HttpEntity<>(message);
-        ResponseEntity<MessageAcknowledgement> response =  this.restTemplate.exchange("http://sample-pong/message", HttpMethod.POST, requestEntity, MessageAcknowledgement.class, Maps.newHashMap());
+        ResponseEntity<MessageAcknowledgement> response =  this.restTemplate.exchange("http://SAMPLE-PONG/message", HttpMethod.POST, requestEntity, MessageAcknowledgement.class, Maps.newHashMap());
         return response.getBody();
     }
 

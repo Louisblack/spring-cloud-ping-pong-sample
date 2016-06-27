@@ -23,13 +23,10 @@ import org.springframework.web.client.RestTemplate;
 @RibbonClients({
         @RibbonClient(name = "samplepongdirect", configuration = PongDirectCallRibbonConfiguration.class),
 })
-@Configuration
 public class PingApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(PingApplication.class, args);
     }
-
-
 
 }
